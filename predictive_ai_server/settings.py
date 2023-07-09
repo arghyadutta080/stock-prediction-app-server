@@ -40,7 +40,9 @@ INSTALLED_APPS = [
 
     'rest_framework',
 
-    'prediction_app'
+    'prediction_app',
+
+    'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [
@@ -52,6 +54,18 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}
+
+SIMPLE_JWT = {
+    'AUTH_HEADER_TYPES': ('Bearer',),
+}
+
+AUTH_USER_MODEL = 'prediction_app.User'
 
 ROOT_URLCONF = 'predictive_ai_server.urls'
 
