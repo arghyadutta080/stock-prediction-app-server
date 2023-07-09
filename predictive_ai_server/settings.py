@@ -43,7 +43,15 @@ INSTALLED_APPS = [
     'prediction_app',
 
     'rest_framework_simplejwt',
+    
+    'corsheaders',
+
 ]
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -53,6 +61,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'corsheaders.middleware.CorsMiddleware', # corsheaders
 ]
 
 REST_FRAMEWORK = {
