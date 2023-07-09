@@ -65,6 +65,8 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
+SECRET_KEY = 'django-insecure-tnwz+*#baf^@n2k2sc^w$h6=gxqx5#)uov5_n=8o-x2vl8-903'
+
 AUTH_USER_MODEL = 'prediction_app.User'
 
 ROOT_URLCONF = 'predictive_ai_server.urls'

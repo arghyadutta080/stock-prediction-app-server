@@ -8,7 +8,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'phone_number', 'password']
+        fields = ['first_name', 'last_name', 'phone_number', 'password', 'last_searched_stock']
 
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data)
