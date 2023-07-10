@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.sessions.models import Session
 from django.conf import settings
 import jwt
+from django.http import JsonResponse
 
 from .serializer import UserSerializer
 from .user_utils import get_user_data
@@ -31,8 +32,11 @@ class LoginAPIView(APIView):
             user_id= decoded_token.get('user_id')
             user_data = get_user_data(user_id)
             # print(user_data)
+            response = JsonResponse({'message': 'Success'})
+            response['Access-Control-Allow-Origin'] = 'http://localhost:3000'  # Replace with your frontend domain
+            response['Access-Control-Allow-Credentials'] = 'true'
             return Response(
-                user_data, status=status.HTTP_200_OK)
+                user_data, response, status=status.HTTP_200_OK)
         else:
             return Response(status=status.HTTP_401_UNAUTHORIZED)
 

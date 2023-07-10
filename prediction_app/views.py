@@ -25,8 +25,17 @@ class StockPredictionView(APIView):
         if not stock_symbol:
             return Response({'error': 'Stock symbol is required.'}, status=400)
 
+        # Download stock data from Yahoo Finance
+        data = yf.download(tickers=stock_symbol, start="2023-01-01", end="2023-07-01")
+
+        # Convert the data to a NumPy array
+        data_array = np.array(data)
+
+        # Save the data array to a file
+        np.save("stock_data.npy", data_array)
+
         # Last 5 years data with interval of 1 day
-        data = yf.download(tickers=stock_symbol, period='5y', interval='1d')
+        # data = yf.download(tickers=stock_symbol, period='5y', interval='1d')
 
         # Extract the 'Open' prices from the data
         opn = data[['Open']]
@@ -75,12 +84,13 @@ class StockPredictionView(APIView):
             prediction = prediction.reshape(1, 1, 1)  # Reshape prediction to match future_input dimensions
             future_input = np.append(future_input[:, 1:, :], prediction, axis=1)
 
+        # Load the data from the .npy file
+        data_array = np.load("stock_data.npy")
+
         return Response({
             'symbol': stock_symbol,
             'predicted_prices': predicted_prices,
             'days': list(range(1, 31)),
-            'stock_prices': stock_prices
-        }, status=200)    
-
-
-
+            'stock_prices': stock_prices,
+            'data': data_array.tolist()  # Convert the array to a Python list and include it in the response
+        }, status=200)

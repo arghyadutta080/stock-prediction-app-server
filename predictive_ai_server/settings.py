@@ -52,6 +52,34 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
 ]
 
+# CORS_ALLOWED_ORIGIN_REGEXES = [
+#     r'^http://localhost:\d+$',
+# ]
+
+CORS_ALLOW_CREDENTIALS = True
+
+# SESSION_COOKIE_SAMESITE = 'None'
+# CSRF_COOKIE_SAMESITE = 'None'
+
+JWT_COOKIE_SECURE = True  # Set to False for non-HTTPS development
+JWT_COOKIE_SAMESITE = 'None'  # Set to 'None' for cross-site requests
+
+# SESSION_COOKIE_SAMESITE = 'None'
+# SESSION_COOKIE_SECURE = False
+
+# CSRF_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = False
+# CSRF_COOKIE_SAMESITE = 'None'
+
+# from datetime import timedelta
+
+# SIMPLE_JWT = {
+#     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=1),
+#     'REFRESH_TOKEN_LIFETIME': timedelta(minutes=5),
+#     'BLACKLIST_AFTER_ROTATION': True,
+# }
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -63,6 +91,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
     'corsheaders.middleware.CorsMiddleware', # corsheaders
+
+    # 'corsheaders.middleware.CorsMiddleware',
+    # 'django.middleware.common.CommonMiddleware',
 ]
 
 REST_FRAMEWORK = {
@@ -70,6 +101,10 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
 }
+
+# CORS_ORIGIN_WHITELIST = [
+#     'http://localhost:3000',  # Replace with the URL of your React frontend
+# ]
 
 SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),
