@@ -25,6 +25,7 @@ For Windows: `.\env\Scripts\activate`.
 4. Install required packages `pip install numpy pandas yfinance tensorflow scikit-learn matplotlib django djangorestframework`
 5. Clone the repository: `git clone https://github.com/arghyadutta080/stock-prediction-app-server.git`
 6. Run the server: `python manage.py runserver`
+7. Complete the installation process of the client-site repository --> [Client-site repository](https://github.com/arghyadutta080/stock-prediction-app-clientside.git)
 
 ## Contributing
 
